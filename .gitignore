@@ -1,4 +1,4 @@
 /.idea/
-/target/classes/
-/out/artifacts/InstaREST_war_exploded/
+/target/
+/out/
 /InstaREST.iml

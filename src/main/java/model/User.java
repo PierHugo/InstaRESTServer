@@ -16,6 +16,11 @@ public class User
     @Column(name = "password", nullable = false)
     private String password;
 
+    public User()
+    {
+
+    }
+
     public String getUsername()
     {
         return username;
@@ -35,4 +40,5 @@ public class User
     {
         this.password = password;
     }
+
 }

@@ -8,7 +8,7 @@ public class Post
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long postId;
+    private int postId;
 
     @Column(name = "image_url")
     private String imageURL;
@@ -20,12 +20,12 @@ public class Post
     @JoinColumn(name = "user_id")
     private User user;
 
-    public long getPostId()
+    public int getPostId()
     {
         return postId;
     }
 
-    public void setPostId(long postId)
+    public void setPostId(int postId)
     {
         this.postId = postId;
     }
@@ -58,5 +58,16 @@ public class Post
     public void setUser(User user)
     {
         this.user = user;
+    }
+
+    @Override
+    public String toString()
+    {
+        return "Post{" +
+                "postId=" + postId +
+                ", imageURL='" + imageURL + '\'' +
+                ", description='" + description + '\'' +
+                ", user=" + user +
+                '}';
     }
 }

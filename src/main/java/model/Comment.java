@@ -8,7 +8,7 @@ public class Comment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long commentId;
+    private int commentId;
 
     @Column(name = "comment")
     private String comment;
@@ -21,12 +21,12 @@ public class Comment
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public long getCommentId()
+    public int getCommentId()
     {
         return commentId;
     }
 
-    public void setCommentId(long commentId)
+    public void setCommentId(int commentId)
     {
         this.commentId = commentId;
     }

@@ -19,7 +19,7 @@ public class Controller
     private static CommentDAO commentDAO;
     private static PostDAO postDAO;
 
-    private Controller()
+    public Controller()
     {
         Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
         sessionFactory = configuration.buildSessionFactory();

@@ -3,6 +3,7 @@ package DAO;
 import controller.Controller;
 import model.Post;
 
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class PostDAO
@@ -43,6 +44,19 @@ public class PostDAO
         List<Post> posts = (List<Post>) Controller.getSession().createQuery("from Post").list();
         Controller.commitTransaction();
         return posts;
+    }
+
+    public List<Post> findAllByUserId(int userid)
+    {
+        Controller.beginTransaction();
+        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE user_id = :userid", Post.class);
+        query.setParameter("userid", userid);
+        List<Post> posts = query.getResultList();
+        Controller.commitTransaction();
+        if (posts.size() == 0)
+            return null;
+        else
+            return posts;
     }
 
 }

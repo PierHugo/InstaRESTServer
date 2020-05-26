@@ -8,6 +8,19 @@ import java.util.List;
 
 public class CommentDAO
 {
+    public Comment findByCommentId(int commentid)
+    {
+        Controller.beginTransaction();
+        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE comment_id = :commentid", Comment.class);
+        query.setParameter("commentid", commentid);
+        List<Comment> comments = query.getResultList();
+        Controller.commitTransaction();
+        if (comments.size() == 0)
+            return null;
+        else
+            return comments.get(0);
+    }
+
     public boolean delete(Comment entity)
     {
         try
@@ -46,24 +59,11 @@ public class CommentDAO
         return comments;
     }
 
-    public List<Comment> findAllByPostId(int postid)
+    public List<Comment> findAllByPostId(int postId)
     {
         Controller.beginTransaction();
-        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE post_id = :postid", Comment.class);
-        query.setParameter("postid", postid);
-        List<Comment> comments = query.getResultList();
-        Controller.commitTransaction();
-        if (comments.size() == 0)
-            return null;
-        else
-            return comments;
-    }
-
-    public List<Comment> findAllByUserId(int userid)
-    {
-        Controller.beginTransaction();
-        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE user_id = :userid", Comment.class);
-        query.setParameter("userid", userid);
+        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE post_id = :postId", Comment.class);
+        query.setParameter("postId", postId);
         List<Comment> comments = query.getResultList();
         Controller.commitTransaction();
         if (comments.size() == 0)

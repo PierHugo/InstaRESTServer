@@ -8,6 +8,19 @@ import java.util.List;
 
 public class UserDAO
 {
+    public User findByUserId(int userId)
+    {
+        Controller.beginTransaction();
+        TypedQuery<User> query = Controller.getSession().createQuery("FROM User WHERE user_id = :userId", User.class);
+        query.setParameter("userId", userId);
+        List<User> users = query.getResultList();
+        Controller.commitTransaction();
+        if (users.size() == 0)
+            return null;
+        else
+            return users.get(0);
+    }
+
     public User findByUsername(String username)
     {
         Controller.beginTransaction();

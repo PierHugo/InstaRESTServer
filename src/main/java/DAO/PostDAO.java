@@ -8,6 +8,19 @@ import java.util.List;
 
 public class PostDAO
 {
+    public Post findByPostId(int postid)
+    {
+        Controller.beginTransaction();
+        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE post_id = :postid", Post.class);
+        query.setParameter("postid", postid);
+        List<Post> posts = query.getResultList();
+        Controller.commitTransaction();
+        if (posts.size() == 0)
+            return null;
+        else
+            return posts.get(0);
+    }
+
     public boolean delete(Post entity)
     {
         try
@@ -46,11 +59,11 @@ public class PostDAO
         return posts;
     }
 
-    public List<Post> findAllByUserId(int userid)
+    public List<Post> findAllByUserId(int userId)
     {
         Controller.beginTransaction();
-        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE user_id = :userid", Post.class);
-        query.setParameter("userid", userid);
+        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE user_id = :userId", Post.class);
+        query.setParameter("userId", userId);
         List<Post> posts = query.getResultList();
         Controller.commitTransaction();
         if (posts.size() == 0)

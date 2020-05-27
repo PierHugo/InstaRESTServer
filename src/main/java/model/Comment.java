@@ -8,7 +8,7 @@ public class Comment
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int commentId;
+    private int id;
 
     @Column(name = "comment")
     private String comment;
@@ -21,14 +21,14 @@ public class Comment
     @JoinColumn(name = "post_id")
     private Post post;
 
-    public int getCommentId()
+    public int getId()
     {
-        return commentId;
+        return id;
     }
 
-    public void setCommentId(int commentId)
+    public void setId(int id)
     {
-        this.commentId = commentId;
+        this.id = id;
     }
 
     public String getComment()
@@ -61,4 +61,14 @@ public class Comment
         this.post = post;
     }
 
+    @Override
+    public String toString()
+    {
+        return "Comment{" +
+                "id=" + id +
+                ", comment='" + comment + '\'' +
+                ", user=" + user +
+                ", post=" + post +
+                '}';
+    }
 }

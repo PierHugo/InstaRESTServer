@@ -21,26 +21,11 @@ public class PostDAO
             return posts.get(0);
     }
 
-    public boolean delete(Post entity)
-    {
-        try
-        {
-            Controller.beginTransaction();
-            if (!Controller.getSession().contains(entity))
-                Controller.getSession().merge(entity);
-            Controller.getSession().delete(entity);
-            Controller.commitTransaction();
-            return true;
-        } catch (Exception e)
-        {
-            return false;
-        }
-    }
-
     public boolean saveOrUpdate(Post entity)
     {
         try
         {
+            Controller.beginTransaction();
             Controller.getSession().saveOrUpdate(entity);
             Controller.commitTransaction();
             return true;
@@ -48,15 +33,6 @@ public class PostDAO
         {
             return false;
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<Post> findAll()
-    {
-        Controller.beginTransaction();
-        List<Post> posts = (List<Post>) Controller.getSession().createQuery("from Post").list();
-        Controller.commitTransaction();
-        return posts;
     }
 
     public List<Post> findAllByUserId(int userId)

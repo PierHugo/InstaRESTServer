@@ -48,22 +48,6 @@ public class UserDAO
             return users.get(0);
     }
 
-    public boolean delete(User entity)
-    {
-        try
-        {
-            Controller.beginTransaction();
-            if (!Controller.getSession().contains(entity))
-                Controller.getSession().merge(entity);
-            Controller.getSession().delete(entity);
-            Controller.commitTransaction();
-            return true;
-        } catch (Exception e)
-        {
-            return false;
-        }
-    }
-
     public boolean saveOrUpdate(User entity)
     {
         try
@@ -78,12 +62,4 @@ public class UserDAO
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public List<User> findAll()
-    {
-        Controller.beginTransaction();
-        List<User> users = (List<User>) Controller.getSession().createQuery("from User").list();
-        Controller.commitTransaction();
-        return users;
-    }
 }

@@ -1,34 +1,48 @@
 package service;
 
-import DAO.PostDAO;
+import controller.Controller;
 import model.Post;
+import model.User;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
 @Path("post")
 public class PostService
 {
-    PostDAO postDAO = new PostDAO();
+    Controller con = new Controller();
 
-    @POST
-    @Path("/findall")
-    @Consumes("application/json")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Post> findAll(final Post post)
+    @GET
+    @Path("/list/{user}")
+    @Consumes(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_XML)
+    public List<Post> findPostsByUserId(@QueryParam("user") int userId)
     {
         try
         {
-            List<Post> list = postDAO.findAll();
-            return list;
+            List<Post> posts = con.getPostDAO().findAllByUserId(userId);
+            return posts;
         } catch (Exception e)
         {
             e.printStackTrace();
             return null;
         }
     }
+
+    @POST
+    @Path("/add/{imageurl}/{description}/{user}")
+    @Consumes(MediaType.APPLICATION_XML)
+    @Produces(MediaType.APPLICATION_XML)
+    public boolean addComment(@QueryParam("imageurl") String imageUrl, @QueryParam("description") String description, @QueryParam("user") int userId)
+    {
+        Post post = new Post();
+        post.setImageURL(imageUrl);
+        post.setDescription(description);
+        User user = con.getUserDAO().findById(userId);
+        post.setUser(user);
+        boolean created = con.getPostDAO().saveOrUpdate(post);
+        return created;
+    }
+
 }

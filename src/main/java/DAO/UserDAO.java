@@ -8,7 +8,7 @@ import java.util.List;
 
 public class UserDAO
 {
-    public User findByUserId(int userId)
+    public User findById(int userId)
     {
         Controller.beginTransaction();
         TypedQuery<User> query = Controller.getSession().createQuery("FROM User WHERE user_id = :userId", User.class);

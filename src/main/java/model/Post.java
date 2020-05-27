@@ -60,14 +60,4 @@ public class Post
         this.user = user;
     }
 
-    @Override
-    public String toString()
-    {
-        return "Post{" +
-                "postId=" + postId +
-                ", imageURL='" + imageURL + '\'' +
-                ", description='" + description + '\'' +
-                ", user=" + user +
-                '}';
-    }
 }

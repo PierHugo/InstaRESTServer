@@ -25,7 +25,7 @@ public class App
         System.out.println(posts.get(0).toString());
 
         //Return comments of post0
-        Post post = Controller.getPostDAO().findByPostId(0);
+        Post post = Controller.getPostDAO().findById(0);
         List<Comment> comments = Controller.getCommentDAO().findAllByPostId(post.getPostId());
         System.out.println(comments.get(0).toString());
 

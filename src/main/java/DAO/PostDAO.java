@@ -8,10 +8,10 @@ import java.util.List;
 
 public class PostDAO
 {
-    public Post findByPostId(int postid)
+    public Post findById(int postid)
     {
         Controller.beginTransaction();
-        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE post_id = :postid", Post.class);
+        TypedQuery<Post> query = Controller.getSession().createQuery("FROM Post WHERE id = :postid", Post.class);
         query.setParameter("postid", postid);
         List<Post> posts = query.getResultList();
         Controller.commitTransaction();

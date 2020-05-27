@@ -8,10 +8,10 @@ import java.util.List;
 
 public class CommentDAO
 {
-    public Comment findByCommentId(int commentid)
+    public Comment findById(int commentid)
     {
         Controller.beginTransaction();
-        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE comment_id = :commentid", Comment.class);
+        TypedQuery<Comment> query = Controller.getSession().createQuery("FROM Comment WHERE id = :commentid", Comment.class);
         query.setParameter("commentid", commentid);
         List<Comment> comments = query.getResultList();
         Controller.commitTransaction();

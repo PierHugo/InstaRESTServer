@@ -14,7 +14,7 @@ public class PostService
     Controller con = new Controller();
 
     @GET
-    @Path("/list/{user}")
+    @Path("/user/{user}")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public List<Post> findPostsByUserId(@QueryParam("user") int userId)

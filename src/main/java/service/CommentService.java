@@ -12,7 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("comment")
+@Path("post/comment")
 public class CommentService
 {
     CommentDAO commentDAO = new CommentDAO();
@@ -20,7 +20,7 @@ public class CommentService
     UserDAO userDAO = new UserDAO();
 
     @GET
-    @Path("/list/{post}")
+    @Path("/post/{post}")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public List<Comment> findCommentsByPostId(@QueryParam("post") int postId)

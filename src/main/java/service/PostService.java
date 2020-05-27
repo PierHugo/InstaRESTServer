@@ -16,7 +16,7 @@ public class PostService
     @GET
     @Path("/user/{user}")
     @Consumes(MediaType.APPLICATION_XML)
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_XML)
     public List<Post> findPostsByUserId(@PathParam("user") int userId)
     {
         try

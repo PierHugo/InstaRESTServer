@@ -15,8 +15,8 @@ public class PostService
 
     @GET
     @Path("/user/{user}")
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
+//    @Consumes(MediaType.APPLICATION_XML)
+    @Produces("text/plain")
     public List<Post> findPostsByUserId(@QueryParam("user") int userId)
     {
         try
@@ -34,7 +34,7 @@ public class PostService
     @Path("/add/{imageurl}/{description}/{user}")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
-    public boolean addComment(@QueryParam("imageurl") String imageUrl, @QueryParam("description") String description, @QueryParam("user") int userId)
+    public boolean addPost(@QueryParam("imageurl") String imageUrl, @QueryParam("description") String description, @QueryParam("user") int userId)
     {
         Post post = new Post();
         post.setImageURL(imageUrl);

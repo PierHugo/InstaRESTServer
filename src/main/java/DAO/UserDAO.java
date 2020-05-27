@@ -11,7 +11,7 @@ public class UserDAO
     public User findById(int userId)
     {
         Controller.beginTransaction();
-        TypedQuery<User> query = Controller.getSession().createQuery("FROM User WHERE user_id = :userId", User.class);
+        TypedQuery<User> query = Controller.getSession().createQuery("FROM User WHERE id = :userId", User.class);
         query.setParameter("userId", userId);
         List<User> users = query.getResultList();
         Controller.commitTransaction();

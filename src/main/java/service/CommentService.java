@@ -23,7 +23,7 @@ public class CommentService
     @Path("/post/{post}")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
-    public List<Comment> findCommentsByPostId(@QueryParam("post") int postId)
+    public List<Comment> findCommentsByPostId(@PathParam("post") int postId)
     {
         try
         {
@@ -40,7 +40,7 @@ public class CommentService
     @Path("/add/{comment}/{post}/{user}")
     @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
-    public boolean addComment(@QueryParam("comment") String commentStr, @QueryParam("post") int postId, @QueryParam("user") int userId)
+    public boolean addComment(@PathParam("comment") String commentStr, @PathParam("post") int postId, @PathParam("user") int userId)
     {
         Comment comment = new Comment();
         Post post = postDAO.findById(postId);

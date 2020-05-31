@@ -1,4 +1,4 @@
-# InstaREST RESTful application Java
+# InstaREST Server RESTful application Java
 
 Ceci est une application Web ressemblante à Instagram écrite en Java et utilisant les WebServices REST.
 

@@ -30,14 +30,14 @@ public class UserService
     @POST
     @Path("/register/{username}/{password}")
     @Produces(MediaType.APPLICATION_XML)
-    public User register(@PathParam("username") String username, @PathParam("password") String password)
+    public boolean register(@PathParam("username") String username, @PathParam("password") String password)
     {
         User tmpUser = new User();
         tmpUser.setUsername(username);
         tmpUser.setPassword(password);
 
-        con.getUserDAO().saveOrUpdate(tmpUser);
-        return tmpUser;
+        boolean created = con.getUserDAO().saveOrUpdate(tmpUser);
+        return created;
     }
 
 }

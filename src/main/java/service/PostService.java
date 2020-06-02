@@ -39,6 +39,7 @@ public class PostService
         post.setDescription(description);
         User user = con.getUserDAO().findById(userId);
         post.setUser(user);
+
         boolean created = con.getPostDAO().saveOrUpdate(post);
         return created;
     }

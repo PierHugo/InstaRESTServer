@@ -1,6 +1,6 @@
 package service;
 
-import DAO.UserDAO;
+import controller.Controller;
 import model.User;
 
 import javax.ws.rs.*;
@@ -9,39 +9,16 @@ import javax.ws.rs.core.MediaType;
 @Path("user")
 public class UserService
 {
-    UserDAO userDAO = new UserDAO();
-
-    @POST
-    @Path("/register")
-    @Consumes(MediaType.APPLICATION_XML)
-    @Produces(MediaType.APPLICATION_XML)
-    public User register(User user)
-    {
-        try
-        {
-            User tmpUser = new User();
-            tmpUser.setUsername(user.getUsername());
-            tmpUser.setPassword(user.getPassword());
-
-            userDAO.saveOrUpdate(tmpUser);
-            return tmpUser;
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-            return null;
-        }
-    }
+    Controller con = new Controller();
 
     @GET
-    @Path("/login")
-    @Consumes(MediaType.APPLICATION_XML)
+    @Path("/login/{username}/{password}")
     @Produces(MediaType.APPLICATION_XML)
-    public User login(User user)
+    public User login(@PathParam("username") String username, @PathParam("password") String password)
     {
         try
         {
-            User tmpUser = userDAO.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-            userDAO.saveOrUpdate(tmpUser);
+            User tmpUser = con.getUserDAO().findByUsernameAndPassword(username, password);
             return tmpUser;
         } catch (Exception e)
         {
@@ -49,4 +26,18 @@ public class UserService
             return null;
         }
     }
+
+    @POST
+    @Path("/register/{username}/{password}")
+    @Produces(MediaType.APPLICATION_XML)
+    public User register(@PathParam("username") String username, @PathParam("password") String password)
+    {
+        User tmpUser = new User();
+        tmpUser.setUsername(username);
+        tmpUser.setPassword(password);
+
+        con.getUserDAO().saveOrUpdate(tmpUser);
+        return tmpUser;
+    }
+
 }

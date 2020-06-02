@@ -21,7 +21,6 @@ public class CommentService
 
     @GET
     @Path("/post/{post}")
-    @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public List<Comment> findCommentsByPostId(@PathParam("post") int postId)
     {
@@ -38,7 +37,6 @@ public class CommentService
 
     @POST
     @Path("/add/{comment}/{post}/{user}")
-    @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public boolean addComment(@PathParam("comment") String commentStr, @PathParam("post") int postId, @PathParam("user") int userId)
     {

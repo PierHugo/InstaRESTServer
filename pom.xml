@@ -5,12 +5,12 @@
 
     <!-- Basic information -->
     <groupId>com</groupId>
-    <artifactId>InstaREST</artifactId>
+    <artifactId>InstaRESTServer</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
     <!-- Project information -->
-    <name>InstaREST</name>
+    <name>InstaRESTInstaRESTServer</name>
     <properties>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>

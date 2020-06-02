@@ -15,7 +15,6 @@ public class PostService
 
     @GET
     @Path("/user/{user}")
-    @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public List<Post> findPostsByUserId(@PathParam("user") int userId)
     {
@@ -32,7 +31,6 @@ public class PostService
 
     @POST
     @Path("/add/{imageurl}/{description}/{user}")
-    @Consumes(MediaType.APPLICATION_XML)
     @Produces(MediaType.APPLICATION_XML)
     public boolean addPost(@PathParam("imageurl") String imageUrl, @PathParam("description") String description, @PathParam("user") int userId)
     {

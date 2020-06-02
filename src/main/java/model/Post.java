@@ -1,10 +1,14 @@
 package model;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "post")
-public class Post
+@XmlRootElement(name = "Post")
+public class Post implements Serializable
+
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
